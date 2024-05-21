@@ -1,4 +1,4 @@
-clone the project 
-Run: npm i 
-Then run: node app.js 
+clone the project.               
+Step 1: npm i            
+Step 2: node app.js               
 app would be running on port 3000.
