@@ -24,15 +24,23 @@ app.use(session({ secret: "ChatV2", resave: false, saveUninitialized: true }));
 
 const io = socket(app.listen(3000));
 
+const images = []; // This could be replaced with a database for persistence
+
 io.on("connection", (socket) => {
-  console.log(socket.id + " a user connected");
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
-  socket.on("chat", (data) => {
-    io.sockets.emit("chat", data);
-  });
+    console.log(socket.id + " a user connected");
+    
+    // On connection, send all images to the newly connected client
+    images.forEach(image => {
+        socket.emit('update-album', image);
+    });
+
+    socket.on('share-image', (data) => {
+        images.push(data); // Store the image in the array
+        io.emit('update-album', data); // Update all clients with the new image
+    });
 });
+
+
 
 
 app.use(LoginRouter);

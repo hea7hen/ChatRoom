@@ -28,10 +28,27 @@
     <div class="contents">
       <div class="GeneralChat">
         <div id="message"></div>
-          <div class="writebox">
-            <input type="text" name="textmessage" placeholder="Write Somethings.." value="" id="textmessage">
-            <input type="submit" name="send" value="Send" id="send">
+        <div class="writebox">
+          <input type="text" id="textmessage" placeholder="Write Something..." value="">
+          <input type="file" id="fileInput" accept="image/*" style="display: none;">
+          <!-- Button to open the shared image album -->
+          <button id="openAlbum">Shared Album</button>
+
+          <!-- Modal or section for displaying images -->
+          <div id="imageAlbum" style="display: none;">
+              <div id="albumContents"></div>
+              <button onclick="document.getElementById('imageAlbum').style.display='none'">Close Album</button>
           </div>
+
+          <!-- Existing content for sending messages and images -->
+          <div class="writebox">
+              <input type="text" id="textmessage" placeholder="Write Something..." value="">
+              <input type="file" id="fileInput" accept="image/*" style="display: none;">
+              <input type="button" id="share" value="Share Image">
+              <input type="button" id="send" value="Send">
+          </div>
+
+      </div>
         </div>
       </div>
     </div>
